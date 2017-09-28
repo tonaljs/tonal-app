@@ -1,0 +1,26 @@
+html {
+  background-color: #efefef;
+}
+body {
+  margin: 0 auto;
+  max-width: 92rem;
+  padding: 0.1rem 1rem 4rem 1em;
+  background-color: white;
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 4rem;
+}
+
+.App {
+  padding: 1rem 0;
+}
+
+.Header {
+  margin-bottom: 2rem;
+}
+.Header a {
+  margin-right: 1rem;
+}
+
+.Note h1 {
+  font-size: 8rem;
+}
