@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ names, values }) => (
+export default ({ names, children }) => (
   <table>
     <thead>
       <tr>
@@ -11,8 +11,6 @@ export default ({ names, values }) => (
         ))}
       </tr>
     </thead>
-    <tbody>
-      <tr>{values.map((value, i) => <td key={i}>{value}</td>)}</tr>
-    </tbody>
+    <tbody>{children}</tbody>
   </table>
 );

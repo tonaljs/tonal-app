@@ -1,6 +1,5 @@
 import React from "react";
 import tonal from "tonal";
-console.log(tonal);
 
 const BASE_URL = "https://github.com/danigb/tonal/tree/master/packages/";
 const apiUrl = (modName, fnName) =>

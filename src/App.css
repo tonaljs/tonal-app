@@ -9,6 +9,23 @@ body {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   margin-bottom: 4rem;
 }
+h1 {
+  font-size: 8rem;
+}
+
+ul > li {
+  list-style-type: none;
+  margin: 0;
+}
+li button.button-clear {
+  padding: 0 0.25rem;
+  margin: 0 0.25rem;
+}
+
+li > strong,
+li > span {
+  margin-right: 1rem;
+}
 
 .App {
   padding: 1rem 0;
@@ -19,8 +36,4 @@ body {
 }
 .Header a {
   margin-right: 1rem;
-}
-
-.Note h1 {
-  font-size: 8rem;
 }

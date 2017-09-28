@@ -1,0 +1,15 @@
+.Circle .background {
+  fill: #ede3e3;
+}
+.Circle .tonic {
+  fill: #9b4dca;
+}
+
+.Circle polygon {
+  fill: #e9d7f5;
+  stroke: #9b4dca;
+}
+.NOCircle polygon {
+  fill: #65c3de;
+  stroke: #4a8ea2;
+}
