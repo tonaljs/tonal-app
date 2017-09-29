@@ -16,6 +16,10 @@ h6 {
   margin: 0;
 }
 
+table > thead > tr {
+  font-weight: bold;
+}
+
 ul > li {
   list-style-type: none;
   margin: 0;

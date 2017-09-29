@@ -18,31 +18,35 @@ class Score extends PureComponent {
       setTimeout(() => this.updateCanvas(), 500);
       return;
     }
-    const Vex = window.Vex;
-    const { Renderer, Formatter } = Vex.Flow;
-    const renderer = new Renderer(this.refs.canvas, Renderer.Backends.CANVAS);
-    const ctx = renderer.getContext();
-    ctx.clearRect(0, 0, W, H);
-    var stave = new Vex.Flow.Stave(0, 0, W - 5);
-    stave.addClef("treble").setContext(ctx);
-    if (this.props.key) stave.addKeySignature(this.props.key);
+    try {
+      const Vex = window.Vex;
+      const { Renderer, Formatter } = Vex.Flow;
+      const renderer = new Renderer(this.refs.canvas, Renderer.Backends.CANVAS);
+      const ctx = renderer.getContext();
+      ctx.clearRect(0, 0, W, H);
+      var stave = new Vex.Flow.Stave(0, 0, W - 5);
+      stave.addClef("treble").setContext(ctx);
+      if (this.props.keyTonic) stave.addKeySignature(this.props.keyTonic);
 
-    stave.draw();
+      stave.draw();
 
-    Formatter.FormatAndDraw(
-      ctx,
-      stave,
-      this.props.notes.map(function(n) {
-        const { letter, acc, oct } = tonal.note.props(n);
+      Formatter.FormatAndDraw(
+        ctx,
+        stave,
+        this.props.notes.map(function(n) {
+          const { letter, acc, oct } = tonal.note.props(n);
 
-        const note = new Vex.Flow.StaveNote({
-          keys: [letter + "/" + oct],
-          duration: "q"
-        });
-        if (acc) note.addAccidental(0, new Vex.Flow.Accidental(acc));
-        return note;
-      })
-    );
+          const note = new Vex.Flow.StaveNote({
+            keys: [letter + "/" + oct],
+            duration: "q"
+          });
+          if (acc) note.addAccidental(0, new Vex.Flow.Accidental(acc));
+          return note;
+        })
+      );
+    } catch (e) {
+      console.warn("VexFlow problem", e);
+    }
   }
 
   render() {

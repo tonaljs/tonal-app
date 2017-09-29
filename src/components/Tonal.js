@@ -4,21 +4,12 @@ export default () => (
   <div className="row">
     <div className="column column-67">
       <h1>Tonal</h1>
-      <h3>
-        <a href="#/notes">Notes</a>
-      </h3>
-      <h3>
-        <a href="#/intervals">Intervals</a>
-      </h3>
-      <h3>
-        <a href="#/scales">Scales</a>
-      </h3>
-      <h3>
-        <a href="#/chords">Chords</a>
-      </h3>
-      <h3>
-        <a href="#/keys">Keys</a>
-      </h3>
+      <p>
+        This is a sample React app to showcase the possibilities of&nbsp;
+        <a href="https://github.com/danigb/tonal">tonal</a> javascript music
+        theory library.
+      </p>
+      <p>Choose a category from above.</p>
     </div>
   </div>
 );
