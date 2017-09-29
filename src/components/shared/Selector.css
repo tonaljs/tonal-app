@@ -1,0 +1,11 @@
+.Selector {
+  margin-bottom: 2rem;
+}
+.Selector label {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.Selector a {
+  margin-right: 1rem;
+}

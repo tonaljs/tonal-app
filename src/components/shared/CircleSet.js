@@ -19,14 +19,14 @@ export default ({ size = 80, offset = 0, chroma = "0", type = "set" }) => {
 
   return (
     <svg
-      class={classNames}
+      className={classNames}
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
     >
-      <circle class="background" cx={center} cy={center} r={radius} />
-      <circle class="tonic" cx={points[0]} cy={points[1]} r={2} />
-      <polygon class="overlay" points={points.join(" ")} />
+      <circle className="background" cx={center} cy={center} r={radius} />
+      <circle className="tonic" cx={points[0]} cy={points[1]} r={2} />
+      <polygon className="overlay" points={points.join(" ")} />
     </svg>
   );
 };

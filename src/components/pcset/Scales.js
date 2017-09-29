@@ -1,5 +1,6 @@
 import React from "react";
 import { withLayout } from "../shared/Layout";
+import Selector, { TONICS } from "../shared/Selector";
 import NameList from "./NameList";
 import tonal from "tonal";
 
@@ -11,7 +12,14 @@ const NAMES = tonal.scale
 
 export default withLayout("scale", ({ tonic }) => (
   <div className="Scales">
-    <h2>Scales</h2>
-    <NameList title="Scales" type="scale" tonic={tonic} names={NAMES} />
+    <Selector items={TONICS} route={i => ["scales", i]} />
+    <h1>Scales {tonic && " in " + tonic}</h1>
+    <NameList
+      title="Scales"
+      type="scale"
+      tonic={tonic}
+      names={NAMES}
+      route={(tonic, name) => ["scale", name, tonic]}
+    />
   </div>
 ));

@@ -11,7 +11,7 @@ const Ivl = props => {
 
 export default withLayout("interval", () => (
   <div class="Intervals">
-    <h2>Intervals</h2>
+    <h1>Intervals</h1>
     <table>
       <tbody>
         {NUMS.map(num => (

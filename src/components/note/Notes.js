@@ -7,7 +7,7 @@ export const TONICS = "C C# Db D D# Eb E F F# Gb G G# Ab A A# Bb B B# Cb".split(
 
 export default withLayout("note", () => (
   <div className="Notes">
-    <h2>Notes</h2>
+    <h1>Notes</h1>
     <table>
       <tbody>
         {TONICS.map(t => (

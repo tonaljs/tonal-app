@@ -1,10 +1,12 @@
 import React from "react";
 import tonal from "tonal";
+import Link from "../shared/Link";
 import CircleSet from "../shared/CircleSet";
+import player from "../../player";
 
-const player = () => null;
+const SIZE = 40;
 
-const Row = ({ tonic, name, type, sep, size }) => {
+const Row = ({ tonic, name, type, route, sep }) => {
   const intervals = tonal[type].intervals(name);
   const setchroma = tonal.pcset.chroma(intervals);
   const notes = tonal[type].notes(tonic, name);
@@ -12,22 +14,20 @@ const Row = ({ tonic, name, type, sep, size }) => {
     <tr>
       <td>
         <CircleSet
-          size={size}
+          size={SIZE}
           chroma={setchroma}
           offset={tonal.note.chroma(tonic)}
         />
       </td>
       <td>
-        <a href={"#/" + type + "/" + name + "/" + tonic}>
-          {tonic ? tonic + sep + name : name}
-        </a>
+        <Link to={route(tonic, name)}>{tonic ? tonic + sep + name : name}</Link>
       </td>
       <td>{(tonic ? notes : intervals).join(" ")}</td>
       <td>
         {tonic ? (
           <button
-            class="button button-clear small"
-            onclick={() => player(tonic, intervals, type)}
+            className="button button-clear small"
+            onClick={() => player(tonic, intervals, type)}
           >
             Play
           </button>
@@ -37,20 +37,20 @@ const Row = ({ tonic, name, type, sep, size }) => {
   );
 };
 
-export default ({ type, names, tonic, size = 40, sep = " " }) => {
+/**
+ * Props:
+ * - names
+ * - type
+ * - tonic
+ * - router
+ */
+export default props => {
+  const sep = props.type === "chord" ? "" : " ";
   return (
     <table>
-      <thead>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </thead>
       <tbody>
-        {names.map(name => (
-          <Row type={type} tonic={tonic} name={name} size={size} sep={sep} />
+        {props.names.map((name, i) => (
+          <Row {...props} key={i} name={name} sep={sep} />
         ))}
       </tbody>
     </table>
