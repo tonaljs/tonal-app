@@ -2,7 +2,7 @@
   "name": "tonalrap",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://danigb.github.io/tonal",
+  "homepage": "https://danigb.github.io/tonal-app",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "prop-types": "^15.6.0",
