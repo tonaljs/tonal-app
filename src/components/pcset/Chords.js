@@ -2,13 +2,16 @@ import React from "react";
 import tonal from "tonal";
 import { withLayout } from "../shared/Layout";
 import Selector from "../shared/Selector";
-import NameList from "./NameList";
+import SearchList from "./SearchList";
 
 const NAMES = tonal.chord
   .names()
   .sort(
     (a, b) => tonal.chord.intervals(a).length - tonal.chord.intervals(b).length
   );
+
+const filter = term =>
+  term === "" ? NAMES : NAMES.filter(name => name.toLowerCase().includes(term));
 
 export default withLayout("chord", ({ tonic, name }) => (
   <div className="Chords">
@@ -18,10 +21,11 @@ export default withLayout("chord", ({ tonic, name }) => (
       items={tonal.note.names()}
       route={i => ["chords", i]}
     />
-    <NameList
+    <SearchList
+      title="Chords"
       type="chord"
       tonic={tonic}
-      names={NAMES}
+      filter={filter}
       route={(tonic, name) => ["chord", tonic ? tonic + name : name]}
     />
   </div>

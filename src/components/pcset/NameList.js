@@ -42,7 +42,7 @@ const Row = ({ tonic, name, type, route, sep }) => {
  * - names
  * - type
  * - tonic
- * - router
+ * - route
  */
 export default props => {
   const sep = props.type === "chord" ? "" : " ";
