@@ -1,7 +1,7 @@
 import React from "react";
 import tonal from "tonal";
 import Score from "../shared/Score";
-import Selector, { TONICS } from "../shared/Selector";
+import Selector from "../shared/Selector";
 import Code, { json } from "../shared/Code";
 import { withLayout } from "../shared/Layout";
 
@@ -61,7 +61,10 @@ export default withLayout("key", ({ keyName }) => {
   const notes = props.intervals.map(tonal.distance.transpose(center(tonic)));
   return (
     <div className="Keys">
-      <Selector items={TONICS} route={i => ["key", i + " " + props.mode]} />
+      <Selector
+        items={tonal.note.names()}
+        route={i => ["key", i + " " + props.mode]}
+      />
       <h6>key</h6>
       <h1>{keyName}</h1>
 

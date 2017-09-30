@@ -50,7 +50,13 @@ export default props => {
     <table>
       <tbody>
         {props.names.map((name, i) => (
-          <Row {...props} key={i} name={name} sep={sep} />
+          <Row
+            {...props}
+            tonic={props.tonics ? props.tonics[i] : props.tonic}
+            key={i}
+            name={name}
+            sep={sep}
+          />
         ))}
       </tbody>
     </table>

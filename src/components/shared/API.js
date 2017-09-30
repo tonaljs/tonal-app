@@ -18,13 +18,10 @@ const Function = ({ module, name }) => (
 const npmUrl = name => `https://www.npmjs.com/package/${name}/`;
 const nodeiCo = name => `https://nodei.co/npm/${name}.png?mini=true`;
 
-export const Npm = ({ name, packageName }) => (
+export const Npm = ({ packageName }) => (
   <p>
-    <a href={npmUrl(packageName || "tonal-" + name)}>
-      <img
-        alt={"tonal-" + name + " npm package"}
-        src={nodeiCo(packageName || "tonal-" + name)}
-      />
+    <a href={npmUrl(packageName)}>
+      <img alt={packageName + " npm package"} src={nodeiCo(packageName)} />
     </a>
   </p>
 );

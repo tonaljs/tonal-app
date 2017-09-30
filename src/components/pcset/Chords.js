@@ -1,7 +1,7 @@
 import React from "react";
 import tonal from "tonal";
 import { withLayout } from "../shared/Layout";
-import Selector, { TONICS } from "../shared/Selector";
+import Selector from "../shared/Selector";
 import NameList from "./NameList";
 
 const NAMES = tonal.chord
@@ -15,7 +15,7 @@ export default withLayout("chord", ({ tonic, name }) => (
     <h1>{tonic ? tonic + " Chords" : "Chords"}</h1>
     <Selector
       label={tonic ? "Change tonic:" : "Choose tonic:"}
-      items={TONICS}
+      items={tonal.note.names()}
       route={i => ["chords", i]}
     />
     <NameList
