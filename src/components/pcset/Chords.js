@@ -11,14 +11,14 @@ const NAMES = tonal.chord
   );
 
 const filter = term =>
-  term === "" ? NAMES : NAMES.filter(name => name.toLowerCase().includes(term));
+  term === "" ? NAMES : NAMES.filter(name => name.includes(term));
 
 export default withLayout("chord", ({ tonic, name }) => (
   <div className="Chords">
     <h1>{tonic ? tonic + " Chords" : "Chords"}</h1>
     <Selector
       label={tonic ? "Change tonic:" : "Choose tonic:"}
-      items={tonal.note.namesEnh()}
+      items={tonal.note.names()}
       route={i => ["chords", i]}
     />
     <SearchList

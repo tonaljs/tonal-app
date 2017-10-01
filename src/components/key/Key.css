@@ -1,0 +1,5 @@
+.KeyScale,
+.RelatedKeys,
+.Key > .Selector {
+  margin-bottom: 2rem;
+}

@@ -10,12 +10,16 @@ const NAMES = tonal.scale
     (a, b) => tonal.scale.intervals(a).length - tonal.scale.intervals(b).length
   );
 
-const filter = term =>
-  term === "" ? NAMES : NAMES.filter(name => name.toLowerCase().includes(term));
+const filter = term => {
+  term = term.toLowerCase();
+  return term === ""
+    ? NAMES
+    : NAMES.filter(name => name.toLowerCase().includes(term));
+};
 
 export default withLayout("scale", ({ tonic }) => (
   <div className="Scales">
-    <Selector items={tonal.note.namesEnh()} route={i => ["scales", i]} />
+    <Selector items={tonal.note.names()} route={i => ["scales", i]} />
     <h1>Scales {tonic && " in " + tonic}</h1>
     <SearchList
       title="Scales"

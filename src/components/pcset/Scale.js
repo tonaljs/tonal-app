@@ -8,7 +8,7 @@ import { withLayout } from "../shared/Layout";
 import Selector from "../shared/Selector";
 
 export default withLayout("scale", ({ tonic, name }) => {
-  const tonics = tonal.note.namesEnh();
+  const tonics = tonal.note.names();
   return (
     <div className="Scale">
       <Selector items={tonics} route={i => ["scale", name, i]} />
