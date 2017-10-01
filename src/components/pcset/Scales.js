@@ -1,5 +1,4 @@
 import React from "react";
-import Downshift from "downshift";
 import { withLayout } from "../shared/Layout";
 import Selector from "../shared/Selector";
 import SearchList from "./SearchList";
@@ -16,7 +15,7 @@ const filter = term =>
 
 export default withLayout("scale", ({ tonic }) => (
   <div className="Scales">
-    <Selector items={tonal.note.names()} route={i => ["scales", i]} />
+    <Selector items={tonal.note.namesEnh()} route={i => ["scales", i]} />
     <h1>Scales {tonic && " in " + tonic}</h1>
     <SearchList
       title="Scales"

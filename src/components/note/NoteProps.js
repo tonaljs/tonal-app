@@ -1,28 +1,28 @@
 import React from "react";
 import tonal from "tonal";
-import Code, { json } from "../shared/Code";
+import player from "../../player";
 
-export default ({ note }) => {
-  const props = tonal.note.props(note);
-  return [
-    <div class="row">
-      <div class="column column-50">
-        <label>Name:</label>
-        {props.name}
-        <label>Pitch class:</label>
-        {props.pc}
-        <label>Accidentals:</label>
-        {props.acc}
+export default ({ props }) => (
+  <div className="NoteProps">
+    <div className="row">
+      <div className="column column-50">
+        <label>Simplified:</label>
+        {tonal.note.simplify(props.name)}
+        <label>Enharmonic:</label>
+        {tonal.note.enharmonic(props.name)}
       </div>
-      <div class="column column-50">
-        <label>Octave:</label>
-        {props.oct}
+      <div className="column column-50">
         <label>Midi:</label>
         {props.midi}
         <label>Frequency:</label>
         {props.freq ? props.freq.toFixed(2) + "Hz" : ""}
       </div>
-    </div>,
-    <Code lines={[`tonal.note.props("${note}") // => ${json(props)}`]} />
-  ];
-};
+    </div>
+    {props.midi && (
+      <p>
+        <br />
+        <button onClick={() => player(props.name)}>Play</button>
+      </p>
+    )}
+  </div>
+);

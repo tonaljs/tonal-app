@@ -37,9 +37,11 @@ const buildChord = (tonic, intervals) => {
 export default (tonic, intervals, type) => {
   if (!piano) return;
   const notes =
-    type === "scale"
-      ? buildScale(tonic, intervals)
-      : buildChord(tonic, intervals);
+    type === undefined
+      ? [tonic]
+      : type === "scale"
+        ? buildScale(tonic, intervals)
+        : buildChord(tonic, intervals);
   const events = notes.map((note, i) => ({
     time: type === "chord" ? 0 : i * 0.5,
     note

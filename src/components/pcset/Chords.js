@@ -18,7 +18,7 @@ export default withLayout("chord", ({ tonic, name }) => (
     <h1>{tonic ? tonic + " Chords" : "Chords"}</h1>
     <Selector
       label={tonic ? "Change tonic:" : "Choose tonic:"}
-      items={tonal.note.names()}
+      items={tonal.note.namesEnh()}
       route={i => ["chords", i]}
     />
     <SearchList

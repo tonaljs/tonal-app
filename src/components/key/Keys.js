@@ -9,7 +9,7 @@ const KeyRow = ({ keyName }) => {
   const minor = tonal.key.relative("minor", keyName);
   return (
     <tr>
-      <td>{tonal.key.accidentals(keyName)}</td>
+      <td>{tonal.key.props(keyName).acc}</td>
       <td>
         <Link to={["key", keyName]}>{keyName}</Link>
       </td>

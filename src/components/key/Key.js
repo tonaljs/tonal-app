@@ -62,7 +62,7 @@ export default withLayout("key", ({ keyName }) => {
   return (
     <div className="Keys">
       <Selector
-        items={tonal.note.names()}
+        items={tonal.note.namesEnh()}
         route={i => ["key", i + " " + props.mode]}
       />
       <h6>key</h6>
