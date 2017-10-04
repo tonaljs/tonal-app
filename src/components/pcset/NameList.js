@@ -1,5 +1,5 @@
 import React from "react";
-import tonal from "tonal";
+import { PcSet, Chord, Scale, Note } from "tonal";
 import Link from "../shared/Link";
 import CircleSet from "../shared/CircleSet";
 import player from "../../player";
@@ -7,17 +7,14 @@ import player from "../../player";
 const SIZE = 40;
 
 const Row = ({ tonic, name, type, route, sep }) => {
-  const intervals = tonal[type].intervals(name);
-  const setchroma = tonal.pcset.chroma(intervals);
-  const notes = tonal[type].notes(tonic, name);
+  const Set = type === "scale" ? Scale : Chord;
+  const intervals = Set.intervals(name);
+  const setchroma = PcSet.chroma(intervals);
+  const notes = Set.notes(tonic, name);
   return (
     <tr>
       <td>
-        <CircleSet
-          size={SIZE}
-          chroma={setchroma}
-          offset={tonal.note.chroma(tonic)}
-        />
+        <CircleSet size={SIZE} chroma={setchroma} offset={Note.chroma(tonic)} />
       </td>
       <td>
         <Link to={route(tonic, name)}>{tonic ? tonic + sep + name : name}</Link>

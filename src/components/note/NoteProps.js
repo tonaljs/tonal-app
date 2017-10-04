@@ -1,5 +1,6 @@
 import React from "react";
-import tonal from "tonal";
+import { Note } from "tonal";
+import { toAbc } from "tonal-abc-notation";
 import player from "../../player";
 
 export default ({ props }) => (
@@ -7,9 +8,11 @@ export default ({ props }) => (
     <div className="row">
       <div className="column column-50">
         <label>Simplified:</label>
-        {tonal.note.simplify(props.name)}
+        {Note.simplify(props.name)}
         <label>Enharmonic:</label>
-        {tonal.note.enharmonic(props.name)}
+        {Note.enharmonic(props.name)}
+        <label>ABC notation:</label>
+        {toAbc(props.name)}
       </div>
       <div className="column column-50">
         <label>Midi:</label>

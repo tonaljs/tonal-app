@@ -1,5 +1,5 @@
 import React from "react";
-import tonal from "tonal";
+import { Note, Scale } from "tonal";
 import PitchSetInfo from "./PitchSetInfo";
 import Related from "./Related";
 import ScaleChords from "./ScaleChords";
@@ -7,8 +7,8 @@ import ScaleModes from "./ScaleModes";
 import { withLayout } from "../shared/Layout";
 import Selector from "../shared/Selector";
 
-export default withLayout("scale", ({ tonic, name }) => {
-  const tonics = tonal.note.names();
+export default withLayout({ scale: Scale }, ({ tonic, name }) => {
+  const tonics = Note.names();
   return (
     <div className="Scale">
       <Selector items={tonics} route={i => ["scale", name, i]} />

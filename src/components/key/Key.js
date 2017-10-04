@@ -1,5 +1,6 @@
 import React from "react";
-import tonal from "tonal";
+import { Note, transpose } from "tonal";
+import * as Key from "tonal-key";
 import Score from "../shared/Score";
 import KeyChords from "./KeyChords";
 import RelatedKeys from "./RelatedKeys";
@@ -11,16 +12,16 @@ import "./Key.css";
 const center = pc =>
   pc ? (pc[0] === "A" || pc[0] === "B" ? pc + 3 : pc + 4) : null;
 
-export default withLayout("key", ({ keyName }) => {
-  const props = tonal.key.props(keyName);
+export default withLayout({ key: Key }, ({ keyName }) => {
+  const props = Key.props(keyName);
   const tonic = props.tonic;
-  const major = tonal.key.relative("major", keyName);
-  const notes = props.intervals.map(tonal.distance.transpose(center(tonic)));
+  const major = Key.relative("major", keyName);
+  const notes = props.intervals.map(transpose(center(tonic)));
   return (
     <div className="Key">
       <Selector
         className="tonics"
-        items={tonal.note.names()}
+        items={Note.names()}
         route={i => ["key", i + " " + props.mode]}
       />
       <h6>key</h6>
@@ -32,7 +33,7 @@ export default withLayout("key", ({ keyName }) => {
             <label>Accidentals:</label>
             {props.acc}&nbsp;
             <label>Altered notes:</label>
-            {tonal.key.alteredNotes(keyName).join(" ")}
+            {Key.alteredNotes(keyName).join(" ")}
           </p>
         </div>
         <div className="column column-5">
@@ -47,13 +48,13 @@ export default withLayout("key", ({ keyName }) => {
 
       <div className="KeyScale">
         <h3>Scale</h3>
-        <Score keyTonic={tonal.key.props(major).tonic} notes={notes} />
+        <Score keyTonic={Key.props(major).tonic} notes={notes} />
       </div>
       <RelatedKeys keyName={keyName} />
       <KeyChords keyName={keyName} />
 
       <h3>Code examples</h3>
-      <Code lines={[`tonal.scale.props("${keyName}") // => ${json(props)}`]} />
+      <Code lines={[`Tonal.Scale.props("${keyName}") // => ${json(props)}`]} />
     </div>
   );
 });

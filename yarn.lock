@@ -6146,6 +6146,45 @@ to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
 
+tonal-abc-notation@^1.0.0-pre5:
+  version "1.0.0-pre6"
+  resolved "https://registry.yarnpkg.com/tonal-abc-notation/-/tonal-abc-notation-1.0.0-pre6.tgz#332fc59a8cb5d80519ea22986721649c4a745673"
+  dependencies:
+    tonal-note "^1.0.0-pre6"
+
+tonal-array@^1.0.0-pre5:
+  version "1.0.0-pre5"
+  resolved "https://registry.yarnpkg.com/tonal-array/-/tonal-array-1.0.0-pre5.tgz#3acc55c682f4e9343432aed40743039b5ca4205f"
+  dependencies:
+    tonal-note "^1.0.0-pre5"
+
+tonal-distance@^1.0.0-pre5:
+  version "1.0.0-pre5"
+  resolved "https://registry.yarnpkg.com/tonal-distance/-/tonal-distance-1.0.0-pre5.tgz#45b88662400e1bd6fede36f2c89998d9bf2a77e3"
+  dependencies:
+    tonal-interval "^1.0.0-pre5"
+    tonal-note "^1.0.0-pre5"
+
+tonal-interval@^1.0.0-pre5:
+  version "1.0.0-pre5"
+  resolved "https://registry.yarnpkg.com/tonal-interval/-/tonal-interval-1.0.0-pre5.tgz#24beeb724969d0d846733c89c0e4e32f2295be19"
+
+tonal-key@^1.0.0-pre5:
+  version "1.0.0-pre5"
+  resolved "https://registry.yarnpkg.com/tonal-key/-/tonal-key-1.0.0-pre5.tgz#94b85d3378e73ed3a90e162cca1d6b3bf941db2a"
+  dependencies:
+    tonal-array "^1.0.0-pre5"
+    tonal-distance "^1.0.0-pre5"
+    tonal-note "^1.0.0-pre5"
+
+tonal-note@^1.0.0-pre5:
+  version "1.0.0-pre5"
+  resolved "https://registry.yarnpkg.com/tonal-note/-/tonal-note-1.0.0-pre5.tgz#fbacb88ec1003d0367c7681672371e0e1a7f4611"
+
+tonal-note@^1.0.0-pre6:
+  version "1.0.0-pre6"
+  resolved "https://registry.yarnpkg.com/tonal-note/-/tonal-note-1.0.0-pre6.tgz#05c9b8c8d7d973c4fe813629a614e6e735a03aa7"
+
 toposort@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.4.tgz#a86107690cbee8cae43b349d2f60162500924dfc"

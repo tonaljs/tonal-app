@@ -1,4 +1,4 @@
-import tonal from "tonal";
+import { Note, transpose } from "tonal";
 const ac = new AudioContext();
 let piano = null;
 
@@ -18,20 +18,20 @@ const loadPiano = Soundfont => {
 loadPiano(window.Soundfont);
 
 const centered = tonic => {
-  const pc = tonal.note.pc(tonic);
+  const pc = Note.pc(tonic);
   const oct = pc[0] === "A" || pc[0] === "B" ? 3 : 4;
   return pc + oct;
 };
 
 const buildScale = (tonic, intervals) => {
-  const scale = intervals.map(tonal.distance.transpose(centered(tonic)));
+  const scale = intervals.map(transpose(centered(tonic)));
   const rev = scale.slice().reverse();
-  scale.push(tonal.distance.transpose(scale[0], "P8"));
+  scale.push(transpose(scale[0], "P8"));
   return scale.concat(rev);
 };
 
 const buildChord = (tonic, intervals) => {
-  return intervals.map(tonal.distance.transpose(centered(tonic)));
+  return intervals.map(transpose(centered(tonic)));
 };
 
 export default (tonic, intervals, type) => {

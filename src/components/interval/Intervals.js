@@ -1,15 +1,15 @@
 import React from "react";
 import { withLayout } from "../shared/Layout";
-import tonal from "tonal";
+import { Interval, Array } from "tonal";
 
-const NUMS = tonal.array.range(1, 15);
+const NUMS = Array.range(1, 15);
 
 const Ivl = props => {
-  const ivl = tonal.interval.build(props);
+  const ivl = Interval.build(props);
   return <a href={"#/interval/" + ivl}>{ivl}</a>;
 };
 
-export default withLayout("interval", () => (
+export default withLayout({ interval: Interval }, () => (
   <div class="Intervals">
     <h1>Intervals</h1>
     <table>

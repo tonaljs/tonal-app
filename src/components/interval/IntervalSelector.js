@@ -1,13 +1,11 @@
 import React from "react";
-import tonal from "tonal";
+import { Interval } from "tonal";
 import Selector from "../shared/Selector";
 
-const IVLS = tonal.interval.names();
+const IVLS = Interval.names();
 const OCTS = [0, 1, 2, 3, 4];
 const octs = props =>
-  OCTS.map(oct =>
-    tonal.interval.build({ step: props.step, alt: props.alt, oct })
-  );
+  OCTS.map(oct => Interval.build({ step: props.step, alt: props.alt, oct }));
 
 export default ({ props }) => (
   <div className="NoteSelector">

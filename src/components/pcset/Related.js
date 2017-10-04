@@ -1,11 +1,12 @@
 import React from "react";
-import tonal from "tonal";
+import { Chord, Scale } from "tonal";
 import NameList from "./NameList";
 import Code, { arr } from "../shared/Code";
 import Collapsable from "../shared/Collapsable";
 
 export const Set = ({ title, type, tonic, name, fnName }) => {
-  const names = tonal[type][fnName](name);
+  const Set = type === "scale" ? Scale : Chord;
+  const names = Set[fnName](name);
 
   return (
     <div>

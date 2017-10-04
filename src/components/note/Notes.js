@@ -1,11 +1,12 @@
 import React from "react";
+import { Note } from "tonal";
 import { withLayout } from "../shared/Layout";
 
 export const TONICS = "C C# Db D D# Eb E F F# Gb G G# Ab A A# Bb B B# Cb".split(
   " "
 );
 
-export default withLayout("note", () => (
+export default withLayout({ note: Note }, () => (
   <div className="Notes">
     <h1>Notes</h1>
     <table>

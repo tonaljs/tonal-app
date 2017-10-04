@@ -1,13 +1,14 @@
 import React from "react";
-import tonal from "tonal";
+import { Note } from "tonal";
+import * as Abc from "tonal-abc-notation";
 import NoteProps from "./NoteProps";
 import NoteSelector from "./NoteSelector";
 import { withLayout } from "../shared/Layout";
 import Code, { json } from "../shared/Code";
 import "./Note.css";
 
-export default withLayout("note", ({ note }) => {
-  const props = tonal.note.props(note);
+export default withLayout({ note: Note, "abc-notation": Abc }, ({ note }) => {
+  const props = Note.props(note);
   return (
     <div className="Note">
       <h6>Note</h6>
@@ -19,10 +20,8 @@ export default withLayout("note", ({ note }) => {
         lines={[
           `import tonal from "tonal"`,
           `tonal.note.props("${note}") // => ${json(props)}`,
-          `tonal.note.simplify("${note}") // => "${tonal.note.simplify(note)}"`,
-          `tonal.note.enharmonic("${note}") // => "${tonal.note.enharmonic(
-            note
-          )}"`
+          `tonal.note.simplify("${note}") // => "${Note.simplify(note)}"`,
+          `tonal.note.enharmonic("${note}") // => "${Note.enharmonic(note)}"`
         ]}
       />
     </div>

@@ -1,9 +1,7 @@
 import React from "react";
-import tonal from "tonal";
 
-const BASE_URL = "https://github.com/danigb/tonal/tree/master/packages/";
-const apiUrl = (modName, fnName) =>
-  BASE_URL + modName + "#module_" + modName + "." + fnName;
+const apiUrl = (mod, fn) =>
+  `http://danigb.github.io/tonal/api/module-${mod}.html#.${fn}`;
 
 const Function = ({ module, name }) => (
   <dt>
@@ -19,21 +17,30 @@ const npmUrl = name => `https://www.npmjs.com/package/${name}/`;
 const nodeiCo = name => `https://nodei.co/npm/${name}.png?mini=true`;
 
 export const Npm = ({ packageName }) => (
-  <p>
-    <a href={npmUrl(packageName)}>
-      <img alt={packageName + " npm package"} src={nodeiCo(packageName)} />
-    </a>
-  </p>
+  <a href={npmUrl(packageName)}>
+    <img alt={packageName + " npm package"} src={nodeiCo(packageName)} />
+  </a>
 );
 
-export default ({ module }) => (
+export const Module = ({ name, module }) => (
+  <div className="module">
+    <h4>
+      <code>tonal-{name}</code>
+    </h4>
+    <Npm packageName={"tonal-" + name.toLowerCase()} />
+    <dl>
+      {Object.keys(module || {})
+        .sort()
+        .map((fn, i) => <Function key={i} module={name} name={fn} />)}
+    </dl>
+  </div>
+);
+
+export default ({ modules }) => (
   <div className="API column column-33">
     <h3>API</h3>
-    <Npm packageName={"tonal-" + module} />
-    <dl>
-      {Object.keys(tonal[module] || {})
-        .sort()
-        .map((name, i) => <Function key={i} module={module} name={name} />)}
-    </dl>
+    {Object.keys(modules).map(name => (
+      <Module key={name} name={name} module={modules[name]} />
+    ))}
   </div>
 );

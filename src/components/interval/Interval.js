@@ -1,13 +1,13 @@
 import React from "react";
-import tonal from "tonal";
+import { Interval } from "tonal";
 import IntervalProps from "./IntervalProps";
 import IntervalSelector from "./IntervalSelector";
 import { withLayout } from "../shared/Layout";
 import Code, { json } from "../shared/Code";
 import "./Interval.css";
 
-export default withLayout("interval", ({ interval }) => {
-  const props = tonal.interval.props(interval);
+export default withLayout({ interval: Interval }, ({ interval }) => {
+  const props = Interval.props(interval);
   return (
     <div className="Interval">
       <h6>Interval</h6>

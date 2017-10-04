@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import tonal from "tonal";
+import { Note } from "tonal";
 import PropTypes from "prop-types";
 
 const W = 512;
@@ -34,7 +34,7 @@ class Score extends PureComponent {
         ctx,
         stave,
         this.props.notes.map(function(n) {
-          const { letter, acc, oct } = tonal.note.props(n);
+          const { letter, acc, oct } = Note.props(n);
 
           const note = new Vex.Flow.StaveNote({
             keys: [letter + "/" + oct],

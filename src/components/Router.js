@@ -4,6 +4,7 @@ import Notes from "./note/Notes";
 import Note from "./note/Note";
 import Intervals from "./interval/Intervals";
 import Interval from "./interval/Interval";
+import PcSets from "./pcset/PcSets";
 import Scales from "./pcset/Scales";
 import Scale from "./pcset/Scale";
 import Chords from "./pcset/Chords";
@@ -36,6 +37,8 @@ export default ({ path }) => {
       return <Keys />;
     case "key":
       return <Key keyName={decode(route[1])} />;
+    case "pcsets":
+      return <PcSets />;
     default:
       return <Tonal />;
   }

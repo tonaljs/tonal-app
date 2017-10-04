@@ -1,13 +1,11 @@
 import React from "react";
-import tonal from "tonal";
+import * as Key from "tonal-key";
 import Selector from "../shared/Selector";
 
 export default ({ keyName }) => {
-  const tonic = tonal.key.props(keyName).tonic;
-  const relatives = tonal.key
-    .modeNames()
-    .map(name => tonal.key.relative(name, keyName));
-  const paralells = tonal.key.modeNames().map(name => tonic + " " + name);
+  const tonic = Key.props(keyName).tonic;
+  const relatives = Key.modeNames().map(name => Key.relative(name, keyName));
+  const paralells = Key.modeNames().map(name => tonic + " " + name);
 
   return (
     <div className="RelatedKeys">

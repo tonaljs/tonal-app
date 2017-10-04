@@ -1,15 +1,16 @@
 import React from "react";
-import tonal from "tonal";
+import { Array } from "tonal";
+import * as Key from "tonal-key";
 import Link from "../shared/Link";
 import { withLayout } from "../shared/Layout";
 
-const ALTS = tonal.array.range(-5, 5);
+const ALTS = Array.range(-5, 5);
 
 const KeyRow = ({ keyName }) => {
-  const minor = tonal.key.relative("minor", keyName);
+  const minor = Key.relative("minor", keyName);
   return (
     <tr>
-      <td>{tonal.key.props(keyName).acc}</td>
+      <td>{Key.props(keyName).acc}</td>
       <td>
         <Link to={["key", keyName]}>{keyName}</Link>
       </td>
@@ -20,7 +21,7 @@ const KeyRow = ({ keyName }) => {
   );
 };
 
-export default withLayout("key", () => (
+export default withLayout({ key: Key }, () => (
   <div className="Keys">
     <h1>Keys</h1>
     <table>
@@ -32,9 +33,7 @@ export default withLayout("key", () => (
         </tr>
       </thead>
       <tbody>
-        {ALTS.map(alt => (
-          <KeyRow kaye={alt} keyName={tonal.key.fromAlter(alt)} />
-        ))}
+        {ALTS.map(alt => <KeyRow kaye={alt} keyName={Key.fromAlter(alt)} />)}
       </tbody>
     </table>
   </div>
