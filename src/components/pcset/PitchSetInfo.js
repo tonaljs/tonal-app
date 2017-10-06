@@ -1,7 +1,8 @@
 import React from "react";
 import { PcSet, Scale, Chord, Note, transpose } from "tonal";
-import CircleSet from "../shared/CircleSet";
-import Score from "../shared/Score";
+import CircleSet from "../viz/CircleSet";
+import PianoKeyboard from "../viz/PianoKeyboard";
+import Score from "../viz/Score";
 import player from "../../player";
 
 const center = pc =>
@@ -17,15 +18,15 @@ export default ({ tonic, name, type }) => {
 
   return (
     <div className="PitchSetInfo">
-      <div class="row">
-        <div class="column column-50">
+      <div className="row">
+        <div className="column column-50">
           <CircleSet
             size={160}
             offset={offset}
             chroma={PcSet.chroma(intervals)}
           />
         </div>
-        <div class="column column-50">
+        <div className="column column-50">
           <label>Intervals</label>
           {intervals.join(" ")}
           <label>Notes</label>
@@ -33,6 +34,11 @@ export default ({ tonic, name, type }) => {
         </div>
       </div>
       {tonic && <Score notes={notes} />}
+      {tonic && type === "chrod" ? (
+        <PianoKeyboard notes={notes} />
+      ) : (
+        <PianoKeyboard chroma={PcSet.chroma(notes)} />
+      )}
       {tonic && (
         <p>
           <button onClick={() => player(tonic, intervals, type)}>Play</button>

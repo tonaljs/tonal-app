@@ -1,13 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 html {
   background-color: #efefef;
 }
 body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: normal;
   margin: 0 auto;
   max-width: 92rem;
   padding: 0.1rem 1rem 4rem 1em;
   background-color: white;
   box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   margin-bottom: 4rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
 }
 h1.big {
   font-size: 8rem;

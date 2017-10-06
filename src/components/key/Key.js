@@ -1,7 +1,7 @@
 import React from "react";
 import { Note, transpose } from "tonal";
 import * as Key from "tonal-key";
-import Score from "../shared/Score";
+import Score from "../viz/Score";
 import KeyChords from "./KeyChords";
 import RelatedKeys from "./RelatedKeys";
 import Selector from "../shared/Selector";
