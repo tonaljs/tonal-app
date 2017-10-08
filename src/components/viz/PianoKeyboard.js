@@ -1,6 +1,7 @@
 import React from "react";
 import { Array, Note } from "tonal";
 import "./PianoKeyboard.css";
+import wrap from "classwrap";
 
 const WHITES = [0, 2, 4, 5, 7, 9, 11];
 const BLACKS = [1, 3, 6, 8, 10];
@@ -10,18 +11,25 @@ const WHITE_HEIGHT = 150;
 const BLACK_WIDTH = 22;
 const BLACK_HEIGHT = 90;
 
-const Octave = ({ xOffset, oct, chroma, noteIndex }) => {
+const Octave = ({ xOffset, oct, setTonic, setChroma, noteIndex }) => {
   return (
     <g id={"octave-" + oct}>
       {WHITES.map((note, i) => {
         const midi = (oct + 1) * 12 + note;
         const name = noteIndex[midi];
-        const isActive = name !== undefined || chroma[note] === "1";
+        const className = wrap([
+          "piano-key",
+          {
+            white: true,
+            active: name !== undefined || setChroma[note] === "1",
+            tonic: setTonic === note
+          }
+        ]);
         return (
           <rect
             key={"note-" + midi}
             id={"note-" + midi}
-            className={"piano-key white" + (isActive ? " active" : "")}
+            className={className}
             width={WHITE_WIDTH}
             height={WHITE_HEIGHT}
             x={xOffset + i * WHITE_WIDTH}
@@ -32,12 +40,19 @@ const Octave = ({ xOffset, oct, chroma, noteIndex }) => {
       {BLACKS.map((note, i) => {
         const midi = (oct + 1) * 12 + note;
         const name = noteIndex[midi];
-        const isActive = name !== undefined || chroma[note] === "1";
+        const className = wrap([
+          "piano-key",
+          {
+            black: true,
+            active: name !== undefined || setChroma[note] === "1",
+            tonic: setTonic === note
+          }
+        ]);
         return (
           <rect
             key={"note-" + midi}
             id={"note-" + midi}
-            className={"piano-key black" + (isActive ? " active" : "")}
+            className={className}
             width={BLACK_WIDTH}
             height={BLACK_HEIGHT}
             x={xOffset + (WHITE_WIDTH * BPOS[i] - BLACK_WIDTH / 2)}
@@ -50,13 +65,14 @@ const Octave = ({ xOffset, oct, chroma, noteIndex }) => {
 
 export default ({
   className,
-  chroma,
+  setChroma,
+  setTonic,
   width,
   notes,
   minOct = 3,
   maxOct = 6
 }) => {
-  chroma = chroma || "";
+  setChroma = setChroma || "";
   notes = notes || [];
   const noteIndex = notes.reduce((index, note) => {
     index[Note.midi(note)] = note;
@@ -79,7 +95,8 @@ export default ({
             <Octave
               key={"oct-" + o}
               oct={o}
-              chroma={chroma}
+              setChroma={setChroma}
+              setTonic={setTonic}
               xOffset={i * 7 * WHITE_WIDTH}
               noteIndex={noteIndex}
             />

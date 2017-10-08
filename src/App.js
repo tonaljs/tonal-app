@@ -6,10 +6,11 @@ import Router from "./components/Router";
 
 class App extends Component {
   render() {
+    const { path } = this.props;
     return (
       <div className="container App">
         <Header />
-        {<Router path={this.props.path} />}
+        {<Router path={path} />}
       </div>
     );
   }

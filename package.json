@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://danigb.github.io/tonal-app",
   "dependencies": {
+    "classwrap": "^1.1.0",
     "downshift": "^1.10.1",
     "gh-pages": "^1.0.0",
     "prop-types": "^15.6.0",
@@ -12,8 +13,8 @@
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
-    "tonal-key": "^1.0.0-pre5",
-    "tonal-abc-notation": "^1.0.0-pre5"
+    "tonal-abc-notation": "^1.0.0-pre5",
+    "tonal-key": "^1.0.0-pre5"
   },
   "scripts": {
     "predeploy": "npm run build",

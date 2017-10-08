@@ -1,14 +1,23 @@
 .piano-key {
   stroke: #3b3636;
-  fill: #efefef;
+  fill: #fff;
+  -fill: #efefef;
 }
 .piano-key.black {
   stroke: #3b3636;
-  fill: #efefef;
+  -fill: #efefef;
+  fill: #000;
 }
 .piano-key.active {
-  fill: white;
+  fill: #e9d7f5;
 }
 .piano-key.black.active {
-  fill: black;
+  -fill: #e9d7f5;
+  fill: #a077b9;
+}
+.piano-key.white.tonic {
+  fill: #54c5c5;
+}
+.piano-key.black.tonic {
+  fill: #54c5c5;
 }

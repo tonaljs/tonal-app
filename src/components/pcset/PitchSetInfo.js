@@ -37,7 +37,10 @@ export default ({ tonic, name, type }) => {
       {tonic && type === "chrod" ? (
         <PianoKeyboard notes={notes} />
       ) : (
-        <PianoKeyboard chroma={PcSet.chroma(notes)} />
+        <PianoKeyboard
+          setTonic={Note.chroma(tonic)}
+          setChroma={PcSet.chroma(notes)}
+        />
       )}
       {tonic && (
         <p>

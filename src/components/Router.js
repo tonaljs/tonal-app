@@ -16,6 +16,7 @@ const decode = str => str.replace(/_/g, " ");
 
 export default ({ path }) => {
   const route = path.split("/");
+  const { tonic, view, id } = {};
   switch (route[0]) {
     case "notes":
       return <Notes />;
