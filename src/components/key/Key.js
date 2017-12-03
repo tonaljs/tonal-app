@@ -12,18 +12,16 @@ import "./Key.css";
 const center = pc =>
   pc ? (pc[0] === "A" || pc[0] === "B" ? pc + 3 : pc + 4) : null;
 
-export default withLayout({ key: Key }, ({ keyName }) => {
+const API = { key: Key };
+export default withLayout(API, ({ note, id }) => {
+  const name = id || "major";
+  const tonic = Note.pc(note);
+  const keyName = tonic + " " + name;
   const props = Key.props(keyName);
-  const tonic = props.tonic;
   const major = Key.relative("major", keyName);
   const notes = props.intervals.map(transpose(center(tonic)));
   return (
     <div className="Key">
-      <Selector
-        className="tonics"
-        items={Note.names()}
-        route={i => ["key", i + " " + props.mode]}
-      />
       <h6>key</h6>
       <h1>{keyName}</h1>
 

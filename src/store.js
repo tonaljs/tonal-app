@@ -1,18 +1,20 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
+import { reducer as routeReducer } from "./router";
 import { CHANGE_PATH } from "./actions";
 
-const initialState = {
-  path: "#"
-};
-
-const reducer = (state = initialState, action) => {
+const pathReducer = (state = "", action) => {
   switch (action.type) {
     case CHANGE_PATH:
-      return { ...state, path: action.payload };
+      return action.payload;
 
     default:
       return state;
   }
 };
+
+const reducer = combineReducers({
+  path: pathReducer,
+  route: routeReducer
+});
 
 export default createStore(reducer);

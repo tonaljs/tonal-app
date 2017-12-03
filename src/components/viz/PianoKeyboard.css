@@ -12,12 +12,13 @@
   fill: #e9d7f5;
 }
 .piano-key.black.active {
-  -fill: #e9d7f5;
-  fill: #a077b9;
+  fill: #e9d7f5;
+  -fill: #a077b9;
 }
 .piano-key.white.tonic {
-  fill: #54c5c5;
+  fill: #a077b9;
 }
 .piano-key.black.tonic {
-  fill: #54c5c5;
+  fill: #a077b9;
+  -fill: #54c5c5;
 }

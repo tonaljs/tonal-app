@@ -6,9 +6,11 @@ import Related from "./Related";
 import Selector from "../shared/Selector";
 import Code, { arr, json } from "../shared/Code";
 
-export default withLayout({ chord: Chord }, ({ name }) => {
+export default withLayout({ chord: Chord }, ({ note, id }) => {
+  const tonic = Note.pc(note);
+  const type = id;
+  const name = tonic + type;
   const tokens = Chord.tokenize(name);
-  const [tonic, type] = tokens;
   const props = Chord.props(type);
   return (
     <div className="Chord">

@@ -20,6 +20,7 @@ h4,
 h5,
 h6 {
   font-family: "Montserrat", sans-serif;
+  color: black;
 }
 h1.big {
   font-size: 8rem;
@@ -53,6 +54,9 @@ li > span {
 .Header {
   margin-bottom: 2rem;
 }
-.Header a {
+.Header .Navigation {
+  margin-bottom: 1rem;
+}
+.Header .Navigation a {
   margin-right: 1rem;
 }

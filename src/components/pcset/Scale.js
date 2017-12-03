@@ -5,16 +5,13 @@ import Related from "./Related";
 import ScaleChords from "./ScaleChords";
 import ScaleModes from "./ScaleModes";
 import { withLayout } from "../shared/Layout";
-import Selector from "../shared/Selector";
 
-export default withLayout({ scale: Scale }, ({ tonic, name }) => {
+export default withLayout({ scale: Scale }, ({ note, name }) => {
+  const tonic = Note.pc(note);
   const tonics = Note.names();
   return (
     <div className="Scale">
-      <Selector items={tonics} route={i => ["scale", name, i]} />
-      <h6>
-        <a href={tonic ? "#/scales/" + tonic : "#/scales"}>Scales</a>
-      </h6>
+      <h6>Scale</h6>
       <h1>
         {tonic} {name}
       </h1>

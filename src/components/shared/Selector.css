@@ -1,4 +1,6 @@
 .Selector {
+  width: 100%;
+  overflow-wrap: break-word;
 }
 .Selector label {
   display: inline;

@@ -22,7 +22,8 @@ const Row = ({ tonic, name, type, route, sep }) => {
         {tonic && (
           <PianoKeyboard
             width="100px"
-            chroma={chroma}
+            setTonic={Note.chroma(tonic)}
+            setChroma={chroma}
             minOct={4}
             maxOct={4}
             notes={notes}

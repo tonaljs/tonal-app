@@ -2,9 +2,22 @@
 export const CHANGE_PATH = "CHANGE_PATH";
 export const changePath = url => ({ type: CHANGE_PATH, payload: url });
 
+// init
+const getRoute = hash => {
+  hash = hash || window.location.hash;
+  const decoded = hash
+    .split("?")[0]
+    .slice(2)
+    .replace(/_/g, " ")
+    .split("/");
+  const [note, path, id] = decoded;
+  return { note, path, id };
+};
+const getHash = () => window.location.hash.slice(2);
+
 // the route reducer
 const initialState = {
-  tonic: undefined,
+  note: undefined,
   path: undefined,
   id: undefined
 };
@@ -12,28 +25,30 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_PATH:
-      const [tonic, path, id] = action.payload.split("/");
-      return { tonic, path, id };
+      return getRoute(action.payload);
 
     default:
       return state;
   }
 };
 
-// init
-const getRoute = () => {
-  let [path, params] = window.location.hash.split("?");
-  path = path.slice(2);
-  params = params || "";
-  return { path, params };
-};
-const getHash = () => window.location.hash.slice(2);
+export function setHash(hash) {
+  window.location.hash = hash;
+}
+
+const slash = o => (o ? "/" + o : "");
+
+export const routeToHash = (note, path, id) =>
+  ("#" + slash(note) + slash(path) + slash(id)).replace(/ /g, "_");
+
+export function setRoute(note, path, id) {
+  setHash(routeToHash(note, path, id));
+}
 
 export function initRouter(store) {
   window.onhashchange = () => {
-    console.log("Route", getRoute());
-    store.dispatch(changePath(getHash()));
+    store.dispatch(changePath(window.location.hash));
   };
-  if (getHash() === "") window.location.hash = "#/note/C4";
+  if (getHash() === "") setHash("#/C4");
   window.onhashchange();
 }

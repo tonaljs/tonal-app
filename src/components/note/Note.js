@@ -5,8 +5,8 @@ import NoteProps from "./NoteProps";
 import NoteSelector from "./NoteSelector";
 import { withLayout } from "../shared/Layout";
 import Code, { json } from "../shared/Code";
-import PianoKeyboard from "../viz/PianoKeyboard";
 import "./Note.css";
+import { setRoute } from "../../router";
 
 const MODULES = { note: Note, "abc-notation": Abc };
 export default withLayout(MODULES, ({ note }) => {
@@ -15,9 +15,6 @@ export default withLayout(MODULES, ({ note }) => {
     <div className="Note">
       <h6>Note</h6>
       <h1 className="big">{note}</h1>
-      <PianoKeyboard chroma={PcSet.chroma([note])} />
-      <p>&nbsp;</p>
-      <NoteSelector props={props} />
       <h3>Properties</h3>
       <NoteProps props={props} />
       <h3>Code examples</h3>

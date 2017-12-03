@@ -14,30 +14,39 @@ import Key from "./key/Key";
 
 const decode = str => str.replace(/_/g, " ");
 
-export default ({ path }) => {
-  const route = path.split("/");
-  const { tonic, view, id } = {};
-  switch (route[0]) {
+export default ({ route }) => {
+  if (!route.note) return <span>{JSON.stringify(route)}</span>;
+  switch (route.path) {
+    case "scales":
+      return <Scales note={route.note} />;
+    case "scale":
+      return <Scale note={route.note} name={route.id} />;
+    case "chords":
+      return <Chords note={route.note} />;
+    case "chord":
+      return <Chord note={route.note} id={route.id} />;
+    case "key":
+      return <Key note={route.note} id={route.id} />;
+    default:
+      return <Note note={route.note} />;
+  }
+};
+
+export const old = ({ path, route }) => {
+  const [zero, one, two] = path.split("/");
+  switch (zero) {
     case "notes":
       return <Notes />;
     case "note":
-      return <Note note={route[1]} />;
+      return <Note note={one} />;
     case "intervals":
       return <Intervals />;
     case "interval":
-      return <Interval interval={route[1]} />;
-    case "scales":
-      return <Scales tonic={route[1]} />;
-    case "scale":
-      return <Scale name={decode(route[1])} tonic={route[2]} />;
-    case "chords":
-      return <Chords tonic={route[1]} />;
-    case "chord":
-      return <Chord name={decode(route[1])} />;
+      return <Interval interval={one} />;
     case "keys":
       return <Keys />;
     case "key":
-      return <Key keyName={decode(route[1])} />;
+      return <Key keyName={decode(one)} />;
     case "pcsets":
       return <PcSets />;
     default:

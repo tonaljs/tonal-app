@@ -11,54 +11,53 @@ const WHITE_HEIGHT = 150;
 const BLACK_WIDTH = 22;
 const BLACK_HEIGHT = 90;
 
-const Octave = ({ xOffset, oct, setTonic, setChroma, noteIndex }) => {
+const getKeyTypes = (type, midi, pcset, notes) => {
+  const chroma = midi % 12;
+  return wrap([
+    "piano-key",
+    type,
+    {
+      active: pcset.chroma[chroma] === "1" || notes.names[midi] !== undefined,
+      tonic: pcset.tonic === chroma || notes.tonic === midi
+    }
+  ]);
+};
+
+const Key = ({ type, chroma, i, oct, pcset, notes, x, onClick }) => {
+  const isWhite = type === "white";
+  const midi = (oct + 1) * 12 + chroma;
+  const offset = isWhite
+    ? i * WHITE_WIDTH
+    : WHITE_WIDTH * BPOS[i] - BLACK_WIDTH / 2;
+
+  const handleClick = e => {
+    e.preventDefault();
+    onClick(midi, notes.names[midi]);
+  };
+
   return (
-    <g id={"octave-" + oct}>
-      {WHITES.map((note, i) => {
-        const midi = (oct + 1) * 12 + note;
-        const name = noteIndex[midi];
-        const className = wrap([
-          "piano-key",
-          {
-            white: true,
-            active: name !== undefined || setChroma[note] === "1",
-            tonic: setTonic === note
-          }
-        ]);
-        return (
-          <rect
-            key={"note-" + midi}
-            id={"note-" + midi}
-            className={className}
-            width={WHITE_WIDTH}
-            height={WHITE_HEIGHT}
-            x={xOffset + i * WHITE_WIDTH}
-            name={noteIndex[midi]}
-          />
-        );
-      })}
-      {BLACKS.map((note, i) => {
-        const midi = (oct + 1) * 12 + note;
-        const name = noteIndex[midi];
-        const className = wrap([
-          "piano-key",
-          {
-            black: true,
-            active: name !== undefined || setChroma[note] === "1",
-            tonic: setTonic === note
-          }
-        ]);
-        return (
-          <rect
-            key={"note-" + midi}
-            id={"note-" + midi}
-            className={className}
-            width={BLACK_WIDTH}
-            height={BLACK_HEIGHT}
-            x={xOffset + (WHITE_WIDTH * BPOS[i] - BLACK_WIDTH / 2)}
-          />
-        );
-      })}
+    <rect
+      key={"note-" + midi}
+      id={"note-" + midi}
+      className={getKeyTypes(type, midi, pcset, notes)}
+      width={isWhite ? WHITE_WIDTH : BLACK_WIDTH}
+      height={isWhite ? WHITE_HEIGHT : BLACK_HEIGHT}
+      x={x + offset}
+      name={notes.names[midi]}
+      onClick={handleClick}
+    />
+  );
+};
+
+const Octave = props => {
+  return (
+    <g id={"octave-" + props.oct}>
+      {WHITES.map((chroma, i) => (
+        <Key key={chroma} type="white" chroma={chroma} i={i} {...props} />
+      ))}
+      {BLACKS.map((chroma, i) => (
+        <Key key={chroma} type="black" chroma={chroma} i={i} {...props} />
+      ))}
     </g>
   );
 };
@@ -68,16 +67,20 @@ export default ({
   setChroma,
   setTonic,
   width,
+  tonic,
   notes,
+  onClick,
   minOct = 3,
   maxOct = 6
 }) => {
-  setChroma = setChroma || "";
-  notes = notes || [];
-  const noteIndex = notes.reduce((index, note) => {
-    index[Note.midi(note)] = note;
-    return index;
-  }, {});
+  const pcset = { tonic: setTonic, chroma: setChroma || "" };
+  const newnotes = {
+    tonic: tonic,
+    names: (notes || []).reduce((index, note) => {
+      index[Note.midi(note)] = note;
+      return index;
+    }, {})
+  };
   const octs = Array.range(minOct, maxOct);
   // const viewWidth = 1120
   const viewWidth = octs.length * 7 * WHITE_WIDTH;
@@ -95,10 +98,10 @@ export default ({
             <Octave
               key={"oct-" + o}
               oct={o}
-              setChroma={setChroma}
-              setTonic={setTonic}
-              xOffset={i * 7 * WHITE_WIDTH}
-              noteIndex={noteIndex}
+              x={i * 7 * WHITE_WIDTH}
+              pcset={pcset}
+              notes={newnotes}
+              onClick={onClick || (() => {})}
             />
           ))}
         </g>
