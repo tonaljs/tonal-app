@@ -60,3 +60,11 @@ li > span {
 .Header .Navigation a {
   margin-right: 1rem;
 }
+
+.ErrorBanner {
+  padding: 1rem;
+  padding-bottom: 1rem;
+  border: thin solid #ff4444;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}

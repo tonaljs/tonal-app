@@ -2,20 +2,13 @@ import { Note, transpose } from "tonal";
 const ac = new AudioContext();
 let piano = null;
 
-const loadPiano = Soundfont => {
+export const loadPiano = Soundfont => {
   console.log("Loading...");
-  if (Soundfont === undefined) {
-    console.log("Load piano retry");
-    setTimeout(() => loadPiano(window.Soundfont), 1000);
-  } else {
-    Soundfont.instrument(ac, "acoustic_grand_piano").then(inst => {
-      console.log("Piano loaded!");
-      piano = inst;
-    });
-  }
+  return Soundfont.instrument(ac, "acoustic_grand_piano").then(inst => {
+    console.log("Piano loaded!");
+    piano = inst;
+  });
 };
-
-loadPiano(window.Soundfont);
 
 const centered = tonic => {
   const pc = Note.pc(tonic);
